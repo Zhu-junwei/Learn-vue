@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>测试js导入</title>
+</head>
+<body>
+<div>
+    <button id="btn">点位一下</button>
+</div>
+<script type="module">
+
+    import {simpleMessage, complexMessage} from "./showMessage.js";
+
+    document.getElementById("btn").onclick = function () {
+        simpleMessage("hello world");
+        complexMessage("hello world");
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if$v-show</title>
+</head>
+<body>
+<div id="app">
+
+    手链价格为:
+    <span v-if="Customer.level >= 1 && Customer.level <= 3">9.9</span>
+    <span v-else-if="Customer.level >= 4 && Customer.level <= 5">19.9</span>
+    <span v-else>29.9</span>
+
+    <br/>
+
+    手链价格为:
+    <span v-show="Customer.level >= 1 && Customer.level <= 3">9.9</span>
+    <span v-show="Customer.level >= 4 && Customer.level <= 5">19.9</span>
+    <span v-show="Customer.level >= 6">29.9</span>
+
+</div>
+
+<script type="module">
+    //导入vue模块
+    import {createApp} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+    //创建vue应用实例
+    createApp({
+        data() {
+            return {
+                Customer: {
+                    name: '张三',
+                    level: 2
+                }
+            }
+        }
+    }).mount("#app")//控制html元素
+</script>
+</body>
+</html>

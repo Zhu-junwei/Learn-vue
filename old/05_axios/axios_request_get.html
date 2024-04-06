@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    axios({
+        method: 'GET',
+        url: 'https://jsonplaceholder.typicode.com/todos/1'
+    }).then((result) => {
+        console.log(result.data);
+    }).catch(err => {
+        console.error(err);
+    });
+</script>
+</body>
+</html>

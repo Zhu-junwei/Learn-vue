@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+</head>
+<body>
+<div id="app">
+   <a :href="url">google</a><br/>
+   <a v-bind:href="url">google</a>
+</div>
+
+<script type="module">
+    import {createApp} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+    createApp({
+        data() {
+            return {
+                url:'https://www.google.com'
+            }
+
+        }
+
+    }).mount('#app')
+</script>
+
+</body>
+
+</html>
