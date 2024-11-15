@@ -12,7 +12,10 @@
         method: 'GET',
         url: 'https://jsonplaceholder.typicode.com/todos/1'
     }).then((result) => {
+        document.write(JSON.stringify(result.data));
         console.log(result.data);
+        console.log(result.data.completed);
+        console.log(result.data.title);
     }).catch(err => {
         console.error(err);
     });

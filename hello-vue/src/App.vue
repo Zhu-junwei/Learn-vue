@@ -1,5 +1,7 @@
-<script setup>
-import {ref} from 'vue'
+<script setup lang="ts">
+import {shallowRef } from 'vue'
+import type {Component} from "vue"
+import Temp from './components/00_temp/App.vue'
 import Hello from './components/01_hello/App.vue'
 import ReactiveRef from './components/02_reactive_ref/App.vue'
 import AttributeBind from './components/03_attribute_bind/App.vue'
@@ -19,9 +21,26 @@ import Props from './components/12_props/App.vue'
 import Emits from './components/13_emits/App.vue'
 import Slots from './components/14_slots/App.vue'
 
-const currentComponent = ref(Hello)
+import Hooks from './components/99_other/01_hooks/App.vue'
+import Router from './components/99_other/02_router/App.vue'
+import Pinia from './components/99_other/03_pinia/App.vue'
+import Mitt from './components/99_other/04_mitt/App.vue'
+import Attrs from './components/99_other/05_$attrs/App.vue'
+import ProvideInject from './components/99_other/06_provide_inject/App.vue'
+import Shallow from './components/99_other/07_shallow/App.vue'
+import Readonly from './components/99_other/08_readonly/App.vue'
+import ToRawMarkRaw from './components/99_other/09_toRaw_markRaw/App.vue'
+import CustomRef from './components/99_other/10_customRef/App.vue'
 
-const components = [
+const currentComponent = shallowRef<Component>(Hello)
+
+interface ComponentItem {
+  name: string;
+  component: Component;
+}
+
+const components:ComponentItem[] = [
+  {name: '0. 临时', component: Temp},
   {name: '1. Hello', component: Hello},
   {name: '2. 声明式渲染', component: ReactiveRef},
   {name: '3. Attribute绑定', component: AttributeBind},
@@ -42,8 +61,22 @@ const components = [
   {name: '14. 插槽', component: Slots},
 ]
 
-function showComponent(component) {
-  currentComponent.value = component.component
+const ex_components:ComponentItem[] = [
+  // {name: '0. 基础', component: Base},
+  {name: '1. 自定义hooks', component: Hooks},
+  {name: '2. 路由 Router', component: Router},
+  {name: '3. Pinia', component: Pinia},
+  {name: '4. mitt', component: Mitt},
+  {name: '5. $attrs', component: Attrs},
+  {name: '6. provide_inject', component: ProvideInject},
+  {name: '7. shallowRef_shallowReactive', component: Shallow},
+  {name: '8. readonly', component: Readonly},
+  {name: '9. toRaw_markRaw', component: ToRawMarkRaw},
+  {name: '10. customRef', component: CustomRef},
+]
+
+function showComponent(componentItem: ComponentItem) {
+  currentComponent.value = componentItem.component
 }
 
 </script>
@@ -52,19 +85,31 @@ function showComponent(component) {
   <div class="nav">
     <div class="left">
       <a href="https://cn.vuejs.org/tutorial" target="_blank">官方互动教程</a>
+
       <ul>
-        <li v-for="component in components" :key="component.name">
-          <button @click="showComponent(component)">
-            {{ component.name }}
+        <li v-for="componentItem in components" :key="componentItem.name">
+          <button @click="showComponent(componentItem)">
+            {{ componentItem.name }}
           </button>
         </li>
       </ul>
+      <hr/>
+
+      <ul>
+        <li v-for="componentItem in ex_components" :key="componentItem.name">
+          <button @click="showComponent(componentItem)">
+            {{ componentItem.name }}
+          </button>
+        </li>
+      </ul>
+
     </div>
     <div class="right">
       <component :is="currentComponent"/>
     </div>
   </div>
 </template>
+
 <style scoped>
 .nav {
   display: flex;

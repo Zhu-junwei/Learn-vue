@@ -1,5 +1,5 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import {ref} from 'vue'
 
 const text = ref('')
 const text1 = ref('')
@@ -11,76 +11,79 @@ const selected = ref('')
 const multiSelected = ref([])
 
 const options = ref([
-    { text: 'One', value: 'A' },
-    { text: 'Two', value: 'B' },
-    { text: 'Three', value: 'C' }
+  {text: 'One', value: 'A'},
+  {text: 'Two', value: 'B'},
+  {text: 'Three', value: 'C'}
 ])
 
-function onInput(e) {
-    text.value = e.target.value
+function onInput(e: Event) {
+  const target = e.target as HTMLInputElement
+  text.value = target.value
 }
 </script>
 
 <template>
-    <h2>v-bind 和 v-on 表单和数据的双向绑定</h2>
-    <input :value="text" @input="onInput" placeholder="Type here">
-    <span>{{ text }}</span>
+  <a href="https://cn.vuejs.org/guide/essentials/forms" target="_blank">指南 - 表单绑定</a>
 
-    <h2>v-model 表单和数据的双向绑定</h2>
-    <input v-model="text1" placeholder="Type here">
-    <span>{{ text1 }}</span>
+  <h2>v-bind 和 v-on 表单和数据的双向绑定</h2>
+  <input :value="text" @input="onInput" placeholder="Type here">
+  <span>{{ text }}</span>
 
-    <h2>多行文本</h2>
-    <span>Multiline message is:</span>
-    <p style="white-space: pre-line;">{{ textareaMsg }}</p>
-    <textarea v-model="textareaMsg" placeholder="add multiple lines"></textarea>
+  <h2>v-model 表单和数据的双向绑定</h2>
+  <input v-model="text1" placeholder="Type here">
+  <span>{{ text1 }}</span>
 
-    <h2>复选框</h2>
-    <input type="checkbox" id="checkbox" v-model="checkedBox" />
-    <label for="checkbox">{{ checkedBox }}</label>
+  <h2>多行文本</h2>
+  <span>Multiline message is:</span>
+  <p style="white-space: pre-line;">{{ textareaMsg }}</p>
+  <textarea v-model="textareaMsg" placeholder="add multiple lines"></textarea>
 
-    <div>Checked names: {{ checkedNames }}</div>
+  <h2>复选框</h2>
+  <input type="checkbox" id="checkbox" v-model="checkedBox"/>
+  <label for="checkbox">{{ checkedBox ? '已选中' : '未选中' }}</label>
 
-    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-    <label for="jack">Jack</label>
+  <div>Checked names: {{ checkedNames }}</div>
 
-    <input type="checkbox" id="john" value="John" v-model="checkedNames">
-    <label for="john">John</label>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
 
-    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-    <label for="mike">Mike</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
 
-
-    <h2>单选按钮</h2>
-    <div>Picked: {{ picked }}</div>
-
-    <input type="radio" id="one" value="One" v-model="picked" />
-    <label for="one">One</label>
-    <input type="radio" id="two" value="Two" v-model="picked" />
-    <label for="two">Two</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
 
 
-    <h2>单选按钮</h2>
-    <div>Selected: {{ selected }}</div>
+  <h2>单选按钮</h2>
+  <div>Picked: {{ picked }}</div>
 
-    <select v-model="selected">
-        <option disabled value="">Please select one</option>
-        <option>A</option>
-        <option>B</option>
-        <option>C</option>
-    </select>
+  <input type="radio" id="one" value="One" v-model="picked"/>
+  <label for="one">One</label>
+  <input type="radio" id="two" value="Two" v-model="picked"/>
+  <label for="two">Two</label>
 
-    <h2>多选</h2>
-    <div>Selected: {{ multiSelected }}</div>
-    <select v-model="multiSelected" multiple>
-        <option>A</option>
-        <option>B</option>
-        <option>C</option>
-    </select>
-    <select v-model="multiSelected" multiple>
-        <option v-for="option in options" :value="option.value">
-            {{ option.text }}
-        </option>
-    </select>
+
+  <h2>单选按钮</h2>
+  <div>Selected: {{ selected }}</div>
+
+  <select v-model="selected">
+    <option disabled value="">Please select one</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+
+  <h2>多选</h2>
+  <div>Selected: {{ multiSelected }}</div>
+  <select v-model="multiSelected" multiple>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <select v-model="multiSelected" multiple>
+    <option v-for="option in options" :value="option.value">
+      {{ option.text }}
+    </option>
+  </select>
 
 </template>

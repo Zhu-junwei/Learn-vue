@@ -6,13 +6,19 @@
 </head>
 <body>
 <div>
-    <button id="btn">点位一下</button>
+    <button id="btn">点我一下，看控制台</button>
+    <button id="btn2">点我一下2，看控制台</button>
 
 </div>
+<!--导入js中所有定义的方法-->
 <script src="showMessage.js"></script>
 <script>
     document.getElementById("btn").onclick = function () {
         simpleMessage("hello world");
+    }
+
+    document.getElementById("btn2").onclick = function () {
+        complexMessage("complexMessage hello world");
     }
 </script>
 </body>

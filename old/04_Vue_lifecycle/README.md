@@ -12,3 +12,5 @@
 | updated       | 数据更新后 |
 | beforeUnmount | 组件销毁前 |
 | unmounted     | 组件销毁后 |
+
+![](https://cn.vuejs.org/assets/lifecycle_zh-CN.W0MNXI0C.png)

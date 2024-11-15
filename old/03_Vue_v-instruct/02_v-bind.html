@@ -2,10 +2,15 @@
 <html lang="zh" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>v-for</title>
+    <title>v-bind</title>
 </head>
 <body>
 <div id="app">
+    <!--
+        作用：动态为html标签绑定属性值，如设置href、src、style样式
+        语法：v-bind:属性名="属性值"
+        简化：:属性名="属性值"
+    -->
    <a :href="url">google</a><br/>
    <a v-bind:href="url">google</a>
 </div>

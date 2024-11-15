@@ -8,6 +8,10 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+    /*
+    别名请求方式 axios.请求方式(url [, data [, config]])
+    axios.get axios.post
+    * */
     axios.get('https://jsonplaceholder.typicode.com/todos/1').then((result) => {
         console.log(result.data);
     }).catch(err => {

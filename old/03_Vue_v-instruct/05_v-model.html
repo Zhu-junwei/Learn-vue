@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>v-model</title>
 </head>
-
+<!--
+    v-model:在表单元素上，双向数据绑定。可以方便地获取或设置表单项数据
+    语法：v-model="变量名"
+-->
 <body>
     <div id="app">
 
@@ -74,6 +77,7 @@
 
             methods: {
                 clear: function() {
+                    // 可以使用this来获取vue实例中准备的数据
                     this.searchConditions.category = "";
                     this.searchConditions.state = "";
                 }

@@ -11,11 +11,9 @@
     <div id="app">
 
         文章分类: <input type="text" v-model="searchConditions.category">
-
         发布状态: <input type="text"  v-model="searchConditions.state">
-
         <button @click="search">搜索</button>
-
+        <button @click="clear">重置</button>
         <br />
         <br />
         <table border="1 solid" colspa="0" cellspacing="0">
@@ -41,9 +39,9 @@
     <!-- 导入axios的js文件 -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module">
-        //导入vue模块
+        // 导入vue模块
         import {createApp} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-        //创建vue应用实例
+        // 创建vue应用实例
         createApp({
             data(){
                 return {
@@ -55,9 +53,9 @@
                 }
             },
             methods:{
-                //声明方法
+                // 搜索
                 search:function(){
-                    //发送请求,完成搜索,携带搜索条件
+                    // 发送请求,完成搜索,携带搜索条件
                     axios.get('http://localhost:8080/article/search?category='+this.searchConditions.category+'&state='+this.searchConditions.state)
                     .then(result=>{
                         //成功回调 result.data
@@ -66,21 +64,27 @@
                     }).catch(err=>{
                         console.log(err);
                     });
+                },
+                // 重置
+                clear:function(){
+                    this.searchConditions.category=''
+                    this.searchConditions.state=''
+                    this.search()
                 }
             },
-            //钩子函数mounted中,获取所有文章数据
+            // 钩子函数mounted中,获取所有文章数据
             mounted:function(){
-                //发送异步请求  axios
+                // 发送异步请求  axios
                 axios.get('http://localhost:8080/article/getAll').then(result=>{
-                    //成功回调
-                    //console.log(result.data);
+                    // 成功回调
+                    // console.log(result.data);
                     this.articleList=result.data;
                 }).catch(err=>{
-                    //失败回调
+                    // 失败回调
                     console.log(err);
                 });
             }
-        }).mount('#app');//控制html元素
+        }).mount('#app');// 控制html元素
     </script>
 </body>
 

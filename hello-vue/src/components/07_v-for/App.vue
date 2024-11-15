@@ -1,22 +1,29 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 // 给每个 todo 对象一个唯一的 id
 let id = 0
 
 const newTodo = ref('')
-const todos = ref([
+
+interface Todo {
+  id: number
+  text: string
+}
+const todos = ref<Todo[]>([
     { id: id++, text: 'Learn HTML' },
     { id: id++, text: 'Learn JavaScript' },
     { id: id++, text: 'Learn Vue' }
 ])
+
 
 function addTodo() {
     todos.value.push({ id: id++, text: newTodo.value })
     newTodo.value = ''
 }
 
-function removeTodo(todo) {
+function removeTodo(todo: Todo) {
+    /*表示只保留那些不等于 to do 的元素*/
     todos.value = todos.value.filter((t) => t !== todo)
 }
 </script>

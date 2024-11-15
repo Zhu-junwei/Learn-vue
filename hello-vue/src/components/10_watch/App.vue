@@ -1,25 +1,24 @@
-<script setup>
-import { ref, watch } from 'vue'
+<script setup lang="ts">
+import App1 from './components/App1.vue'
+import App2 from './components/App2.vue'
+import App3 from './components/App3.vue'
+import App4 from './components/App4.vue'
+import App5 from './components/App5.vue'
+import App6 from './components/App6_watch_effect.vue'
 
-const todoId = ref(1)
-const todoData = ref(null)
-
-async function fetchData() {
-    todoData.value = null
-    const res = await fetch(
-        `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
-    )
-    todoData.value = await res.json()
-}
-
-fetchData()
-
-watch(todoId, fetchData)
 </script>
 
 <template>
-    <p>Todo id: {{ todoId }}</p>
-    <button @click="todoId++" :disabled="!todoData">Fetch next todo</button>
-    <p v-if="!todoData">Loading...</p>
-    <pre v-else>{{ todoData }}</pre>
+  <!-- 侦听基本类型响应式数据 -->
+  <App1/>
+  <!-- 侦听ref响应式对象 -->
+  <App2/>
+  <!-- 侦听reactive响应式对象 -->
+  <App3/>
+  <!-- 侦听响应式对象中的某个属性 -->
+  <App4/>
+  <!-- 侦听响应式对象中的多个属性 -->
+  <App5/>
+  <!-- 侦听属性改变 -->
+  <App6/>
 </template>

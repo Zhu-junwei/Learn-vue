@@ -6,10 +6,14 @@
 </head>
 <body>
 <div>
-    <button id="btn">点位一下</button>
+    <button id="btn">点我一下</button>
 </div>
+<!--
+声明这是一个模块类型的脚本，允许使用 import 和 export 关键字来引入和导出代码
+-->
 <script type="module">
 
+    /*引入要使用的方法*/
     import {simpleMessage, complexMessage} from "./showMessage.js";
 
     document.getElementById("btn").onclick = function () {
